@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserDAO">
+	<resultMap type="User" id="UserMap">
+		<result column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<result column="email" property="email" />
+	</resultMap>
+
+	<insert id="addUser" parameterType="User">
+		insert into users(username,password,email)
+		values(#{username},#{password},#{email})
+	</insert>
+	
+	<update id="updateUser" parameterType="hashmap">
+		update users
+		   set password=#{password}
+		 where username=#{username}
+	</update>
+	
+	<select id="getUserById" resultMap="UserMap" parameterType="int">
+		select * from users where id = #{id}
+	</select>
+	
+	<select id="getUserByUsername" resultMap="UserMap" parameterType="string">
+		select * from users where username = #{username}
+	</select>
+</mapper>
