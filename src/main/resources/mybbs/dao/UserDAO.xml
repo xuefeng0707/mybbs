@@ -26,4 +26,11 @@
 	<select id="getUserByUsername" resultMap="UserMap" parameterType="string">
 		select * from users where username = #{username}
 	</select>
+	
+	<select id="checkUsernameExists" resultType="int" parameterType="string">
+		select count(1) from users where username = #{username}
+	</select>
+	<select id="checkEmailExists" resultType="int" parameterType="string">
+		select count(1) from users where email = #{email}
+	</select>
 </mapper>

@@ -17,6 +17,7 @@
 	<context:annotation-config />
 
 	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
 
 	<!-- 使用注释方式创建对象，需要声明此行 -->
 	<context:component-scan base-package="mybbs.action" />
@@ -30,7 +31,16 @@
 		<property name="toolboxConfigLocation" value="WEB-INF/classes/toolbox.xml" />
 		<property name="dateToolAttribute" value="date" />
 		<property name="numberToolAttribute" value="number" />
+		
+		<property name="order" value="0" />
 	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+        <property name="order" value="1" />
+    </bean>
 
 	<bean id="velocityConfig"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
