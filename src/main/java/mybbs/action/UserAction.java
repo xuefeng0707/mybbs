@@ -1,5 +1,7 @@
 package mybbs.action;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import mybbs.model.User;
@@ -26,22 +28,29 @@ public class UserAction {
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setEmail(email);
+		user.setCreateDate(new Date());
 		
 		service.register(user);
 		
-		return "/index";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping("/login.action")
 	public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
 		System.out.println(username + "-" + password);
 		
-		return "/index";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value="/validateEmail.action",method=RequestMethod.POST)
 	@ResponseBody
 	public String validateEmail(@RequestParam("email") String email) {
 		return service.checkEmailExists(email) ? "true" : "false";
+	}
+	
+	@RequestMapping(value="/validateUsername.action",method=RequestMethod.POST)
+	@ResponseBody
+	public String validateUsername(@RequestParam("username") String username) {
+		return service.checkUsernameExists(username) ? "true" : "false";
 	}
 }

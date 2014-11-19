@@ -9,8 +9,8 @@
 	</resultMap>
 
 	<insert id="addUser" parameterType="User">
-		insert into users(username,password,email)
-		values(#{username},#{password},#{email})
+		insert into users(username,password,email,create_date)
+		values(#{username},#{password},#{email},#{createDate})
 	</insert>
 	
 	<update id="updateUser" parameterType="hashmap">

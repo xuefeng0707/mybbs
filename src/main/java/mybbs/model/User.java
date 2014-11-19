@@ -1,5 +1,7 @@
 package mybbs.model;
 
+import java.util.Date;
+
 public class User {
 	private long id;
 	
@@ -8,6 +10,8 @@ public class User {
 	private String password;
 	
 	private String email;
+	
+	private Date createDate;
 
 	public String getUsername() {
 		return username;
@@ -37,5 +41,12 @@ public class User {
 		return id;
 	}
 	
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	
+	public Date getCreateDate() {
+		return createDate;
+	}
 	
 }

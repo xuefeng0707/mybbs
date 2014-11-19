@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public class UserDAO extends AbstractDAO {
 	
 	public boolean checkUsernameExists(String username) {
-		int count = sqlSession.selectOne("UserDAO.checkUsernameExists");
+		int count = sqlSession.selectOne("UserDAO.checkUsernameExists", username);
 		
 		return count > 0;
 	}
@@ -20,6 +20,8 @@ public class UserDAO extends AbstractDAO {
 	}
 	
 	public boolean addUser(User user) {
+		// TODO add validation
+		
 		int num = sqlSession.insert("UserDAO.addUser", user);
 		
 		return num > 0;
